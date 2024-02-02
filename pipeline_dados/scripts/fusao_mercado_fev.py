@@ -13,7 +13,7 @@ def read_json(path):
 def read_csv(path):
     csv_data = []
 
-    with open(path_csv, 'r') as file:
+    with open(path, 'r') as file:
         spamreader = csv.DictReader(file, delimiter=',')
         for row in spamreader:
             csv_data.append(row)
