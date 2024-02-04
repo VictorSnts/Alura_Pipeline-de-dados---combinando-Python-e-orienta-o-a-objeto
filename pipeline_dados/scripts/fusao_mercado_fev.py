@@ -13,6 +13,9 @@ path_csv  = "data_raw/dados_empresaB.csv"
 empresaA_data = Dados(path=path_json,data_format="json")
 empresaB_data = Dados(path=path_csv, data_format="csv")
 
+print_info(f"Caminho do arquivo da empresaA: {empresaA_data.path}")
+print_info(f"Caminho do arquivo da empresab: {empresaB_data.path}")
+
 print_info(f"Campos do arquivo da empresaA: {empresaA_data.columns}")
 print_info(f"Numero de registros do arquivo da empresaA: {empresaA_data.size}")
 print_info(f"Campos do arquivo da empresaB: {empresaB_data.size} {empresaB_data.columns}")
