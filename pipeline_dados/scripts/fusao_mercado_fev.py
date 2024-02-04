@@ -40,8 +40,8 @@ print_info(f"Campo 'Data da Venda' incluido nos dados do JSON. Novos Campos: {em
 
 # Agrupando os dados
 grouped_data = Dados.join_data([empresaA_data.data, empresaB_data.data])
-print_info(f"Numero de registros dos Dados Agrupados: {grouped_data.size}")
 print_info(f"Campos dos Dados Agrupados: {grouped_data.columns}")
+print_info(f"Numero de registros dos Dados Agrupados: {grouped_data.size}")
 
 
 # Salvando dados
