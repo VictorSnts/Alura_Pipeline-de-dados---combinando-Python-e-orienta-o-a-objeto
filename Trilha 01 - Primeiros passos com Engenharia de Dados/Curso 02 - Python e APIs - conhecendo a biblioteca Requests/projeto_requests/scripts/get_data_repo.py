@@ -5,11 +5,11 @@ import base64
 from datetime import datetime
 
 DATE = datetime.now().strftime('%Y%m%d')
-ACCESS_TOKEN = "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"
+ACCESS_TOKEN = "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"
 HEADERS = {'Authorization' : 'Bearer ' + ACCESS_TOKEN,
            'X-GitHub-Api-Version': '2022-11-28'}
 BASE_URL_API = "https://api.github.com"
-USER_COMPANY = "amzn"
+USER_COMPANY = "Seveshy"
 SAVE_DATA_INFO = {
     "file_name" : f"{USER_COMPANY}_repos_languages_{DATE}.csv",
     "owner" : "VictorSnts",
@@ -31,10 +31,13 @@ def get_pages_num(url):
         total_pages = int(last_page_info.split(';')[0].split("page=")[-1].replace(">", ""))
         return total_pages
     else:
-        raise Exception(ReferenceError, f"Nao foi possivel identificar o numero de paginas. Código de resposta: {response.status_code}")
+        if response.status_code == 200: return 1
+        else: raise Exception(ReferenceError, f"Nao foi possivel identificar o numero de paginas. Código de resposta: {response.status_code}")
 
 
-def get_repos(url):
+def get_repos():
+    url = f"{BASE_URL_API}/users/{USER_COMPANY}/repos"
+    print_info(url)
     repos_list = []
     sum_repos = 0
     pages_num = get_pages_num(url)
@@ -141,8 +144,7 @@ def load_data(file_name, owner, repo):
 # Exportando os Dados
 print_info(f"EXPORTANDO OS DADOS")
 print_info(f"Obtendo infos completas dos repositorios de {USER_COMPANY}")
-url_export = f"{BASE_URL_API}/users/{USER_COMPANY}/repos"
-repos_list = get_repos(url_export)
+repos_list = get_repos()
 
 
 # Transformando os Dados
