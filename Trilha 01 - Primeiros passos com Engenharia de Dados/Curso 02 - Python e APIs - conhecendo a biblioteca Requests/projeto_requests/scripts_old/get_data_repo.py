@@ -5,22 +5,23 @@ import base64
 from datetime import datetime
 
 DATE = datetime.now().strftime('%Y%m%d')
-ACCESS_TOKEN = "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"
+ACCESS_TOKEN = "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"
 HEADERS = {'Authorization' : 'Bearer ' + ACCESS_TOKEN,
            'X-GitHub-Api-Version': '2022-11-28'}
 BASE_URL_API = "https://api.github.com"
-USER_COMPANY = "Seveshy"
+USER_COMPANY = "nathos"
 SAVE_DATA_INFO = {
     "file_name" : f"{USER_COMPANY}_repos_languages_{DATE}.csv",
     "owner" : "VictorSnts",
     "repo" : "linguagens-utilizadas-empresas"
 }
 
+## OK
 def print_info(info):
     print(f"INFO: {info}")
     print("--")
 
-
+## OK
 def get_pages_num(url):
     response = requests.get(url)
     link_header = response.headers.get('link')
@@ -34,7 +35,7 @@ def get_pages_num(url):
         if response.status_code == 200: return 1
         else: raise Exception(ReferenceError, f"Nao foi possivel identificar o numero de paginas. Código de resposta: {response.status_code}")
 
-
+## OK
 def get_repos():
     url = f"{BASE_URL_API}/users/{USER_COMPANY}/repos"
     print_info(url)
@@ -61,7 +62,7 @@ def get_repos():
     print_info(f"Total de repositorios: {sum_repos}")
     return(repos_list)
 
-
+## OK
 def get_repos_name(repos):
     list_repos_name = []
 
@@ -71,7 +72,7 @@ def get_repos_name(repos):
 
     return list_repos_name
 
-
+## OK
 def get_repos_language(repos):
     list_repos_language = []
 
@@ -81,16 +82,16 @@ def get_repos_language(repos):
 
     return list_repos_language
 
-
+## OK
 def create_df(data):
     return pd.DataFrame(data)
 
-
+## OK
 def save_data(data, file_name):
-    df = create_df(data)
-    df.to_csv(file_name, index=False)
+    df = create_df(data) ## OK
+    df.to_csv(file_name, index=False) ## OK
 
-
+## OK
 def repo_exists(owner, repo):
     url = f'{BASE_URL_API}/repos/{owner}/{repo}'
     response = requests.get(url)
@@ -102,7 +103,7 @@ def repo_exists(owner, repo):
     else:
         raise Exception(ReferenceError, f"Erro ao verificar o repositório {repo}. Código de resposta: {response.status_code}")
 
-
+## OK
 def create_repo(repo, description):
     url = f"{BASE_URL_API}/user/repos"
     data = {
@@ -117,14 +118,14 @@ def create_repo(repo, description):
     else:
         raise Exception(ReferenceError, f"Erro ao criar o repositório {repo}. Código de resposta: {response.status_code}")
 
-
+## OK
 def file_to_base64(file_name):
     with open(file_name, "rb") as file:
         file_content = file.read()
 
     return base64.b64encode(file_content)
 
-
+## OK
 def load_data(file_name, owner, repo):
     url = f"{BASE_URL_API}/repos/{owner}/{repo}/contents/{file_name}"
     encoded_file = file_to_base64(file_name)
@@ -144,21 +145,21 @@ def load_data(file_name, owner, repo):
 # Exportando os Dados
 print_info(f"EXPORTANDO OS DADOS")
 print_info(f"Obtendo infos completas dos repositorios de {USER_COMPANY}")
-repos_list = get_repos()
+repos_list = get_repos() ## OK
 
 
 # Transformando os Dados
 print_info(f"TRANSFORMANDO OS DADOS")
 print_info(f"Obtendo nomes dos repositorio de {USER_COMPANY}")
-list_repos_name = get_repos_name(repos_list)
+list_repos_name = get_repos_name(repos_list) ## OK
 
 print_info(f"Obtendo linguagens de programação dos repositorios de {USER_COMPANY}")
-list_repos_language = get_repos_language(repos_list)
+list_repos_language = get_repos_language(repos_list) ## OK
 
 data = {
     "repository" : list_repos_name,
     "language" : list_repos_language
-}
+} ## OK
 
 print_info(f"Salvando dados dos repositorios de {USER_COMPANY} no arquivo {SAVE_DATA_INFO['file_name']}")
 save_data(data, SAVE_DATA_INFO["file_name"])
@@ -166,8 +167,6 @@ save_data(data, SAVE_DATA_INFO["file_name"])
 
 # Carregando os dados
 print_info(f"CARREGANDO OS DADOS")
-url_load = f"{BASE_URL_API}/user/repos"
-
 print_info(f"Verificando o repositorio {SAVE_DATA_INFO['repo']}, para carregar o arquivo.")
 if repo_exists(SAVE_DATA_INFO["owner"], SAVE_DATA_INFO["repo"]):
     print_info(f"O repositorio {SAVE_DATA_INFO['repo']} ja existe.")
