@@ -20,3 +20,18 @@ Este curso teve como objetivo fornecer uma base sólida na construção de pipel
 3. **Habilidades Adquiridas:**
    - Desenvolvemos habilidades práticas na criação de pipelines de dados, aplicáveis em diversos contextos.
    - Adquirimos conhecimentos fundamentais para lidar com ferramentas de Big Data, compreendendo a lógica de orientação a objetos e tomada de decisões técnicas.
+
+### Curso 02 - Python e APIs: conhecendo a biblioteca Requests
+
+**Objetivo:**
+Este curso teve como objetivo fornecer um conhecimento sobre a biblioteca Requests aplicado a construção de pipelines de ETL de dados, combinando Python e os princípios da programação orientada a objetos.
+
+**Habilidades Adquiridas:**
+   - Desenvolvimento de um pipeline ETL utilizando a biblioteca Requests do Python
+   - Uso os recursos da biblioteca Requests para extrair dados da API do GitHub
+   - Exploração e manipulação dos dados as requisições GET, POST, PUT e DELETE
+   - Identificar diferentes status codes
+   - Processo de autenticação na API do GitHub
+   - Execução so processo de paginação
+   - Aplicação dos principais conceitos de POO
+
